@@ -184,6 +184,32 @@ legends = cowplot::plot_grid(
 cowplot::plot_grid(figures_without_legend, legends, rel_heights = c(10, 2), nrow = 2, align = "hv")
 dev.off()
 
+# Ligand-target gene interaction -------------------------------------------------
+weighted_networks = readRDS("database/weighted_networks_nsga2r_final.rds")
+ligand_tf_matrix = readRDS("database/ligand_tf_matrix_nsga2r_final.rds")
+
+lr_network = readRDS("database/lr_network_human_21122021.rds")
+sig_network = readRDS("database/signaling_network_human_21122021.rds")
+gr_network = readRDS("database/gr_network_human_21122021.rds")
+
+setwd("figures")
+
+ligands_all = c("TGFB1") # this can be a list of multiple ligands if required
+targets_all = c("BHLHE40", "EGR1", "FOS", "FOSB", "GADD45B", "KLF6", "TXNIP")
+
+active_signaling_network = get_ligand_signaling_path(ligand_tf_matrix = ligand_tf_matrix, ligands_all = ligands_all, targets_all = targets_all, weighted_networks = weighted_networks)
+
+# For better visualization of edge weights: normalize edge weights to make them comparable between signaling and gene regulatory interactions
+active_signaling_network_min_max = active_signaling_network
+active_signaling_network_min_max$sig = active_signaling_network_min_max$sig %>% mutate(weight = ((weight-min(weight))/(max(weight)-min(weight))) + 0.75)
+active_signaling_network_min_max$gr = active_signaling_network_min_max$gr %>% mutate(weight = ((weight-min(weight))/(max(weight)-min(weight))) + 0.75)
+
+graph_min_max = diagrammer_format_signaling_graph(signaling_graph_list = active_signaling_network_min_max, ligands_all = ligands_all, targets_all = targets_all, sig_color = "#EE7733", gr_color = "#762A83")
+
+# To render the graph: uncomment following line of code
+DiagrammeR::render_graph(graph_min_max, layout = "kk", as_svg = TRUE)
+DiagrammeR::export_graph(graph_min_max, file_name = "signaling_graph_min_max.pdf", file_type = "pdf", width = 20, height = 20)
+
 ## Proliferating cells----------------------------------------------------------
 seurat_obj$celltype[seurat_obj$QuiescenceStatus == "Proliferating"] <- "Fast_cycling"
 seurat_obj$celltype[seurat_obj$QuiescenceStatus == "Slow-cycling"] <- "Reference"
