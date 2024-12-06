@@ -106,6 +106,12 @@ from cellphonedb.utils import db_releases_utils
 
 display(HTML(db_releases_utils.get_remote_database_versions_html()["db_releases_html_table"]))
 
+# -- Version of the databse
+cpdb_version = "v5.0.0"
+
+# -- Path where the input files to generate the database are located
+cpdb_target_dir = os.path.join("/Users/cenkcelik/BreastCancerG0arrest/05_CellPhoneDB", cpdb_version)
+
 # Define paths------------------------------------------------------------------
 pd.set_option("display.max_columns", 100)
 os.chdir("/Users/cenkcelik/BreastCancerG0arrest/05_CellPhoneDB")
