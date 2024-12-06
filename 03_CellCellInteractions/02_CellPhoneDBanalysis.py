@@ -143,9 +143,11 @@ pvals = pd.read_csv("output/degs_analysis_relevant_interactions_.txt", sep="\t")
 decon = pd.read_csv("output/degs_analysis_deconvoluted_.txt", sep="\t")
 scores = pd.read_csv("output/degs_analysis_interaction_scores_.txt", sep="\t")
 
+# Extended Data Fig 6e
 p = kpy.plot_cpdb_heatmap(pvals = pvals, degs_analysis=True, figsize=(5, 5), title="Sum of significant interactions", symmetrical=False)
 p.savefig("figures/degs_analysis_heatmaps_threshold.pdf")
 
+# Figure 5c and Extended Data Fig. 6f
 p=kpy.plot_cpdb(
     adata = adata,
     cell_type1 = "G0_arrested|Fast_cycling",
@@ -164,9 +166,9 @@ p=kpy.plot_cpdb(
     min_interaction_score=30,
     max_size=5
     )
-
 p.save("figures/TME_to_all_dotplot.pdf")
 
+# Figure 5b
 p=kpy.plot_cpdb(
     adata = adata,
     cell_type1 = "G0_arrested|Fast_cycling",
@@ -183,5 +185,4 @@ p=kpy.plot_cpdb(
     figsize = (10, 15),
     min_interaction_score=20,
 )
-
 p.save("figures/G0_arrested_Fast_cycling_dotplot.pdf")
