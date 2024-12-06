@@ -184,7 +184,7 @@ legends = cowplot::plot_grid(
 cowplot::plot_grid(figures_without_legend, legends, rel_heights = c(10, 2), nrow = 2, align = "hv")
 dev.off()
 
-# Ligand-target gene interaction -------------------------------------------------
+# Ligand-target gene interaction--------------------------------------------------
 weighted_networks = readRDS("database/weighted_networks_nsga2r_final.rds")
 ligand_tf_matrix = readRDS("database/ligand_tf_matrix_nsga2r_final.rds")
 
@@ -206,7 +206,7 @@ active_signaling_network_min_max$gr = active_signaling_network_min_max$gr %>% mu
 
 graph_min_max = diagrammer_format_signaling_graph(signaling_graph_list = active_signaling_network_min_max, ligands_all = ligands_all, targets_all = targets_all, sig_color = "#EE7733", gr_color = "#762A83")
 
-# To render the graph: uncomment following line of code
+# To render the graph: uncomment following line of code (Extended Data Fig. 6d)
 DiagrammeR::render_graph(graph_min_max, layout = "kk", as_svg = TRUE)
 DiagrammeR::export_graph(graph_min_max, file_name = "signaling_graph_min_max.pdf", file_type = "pdf", width = 20, height = 20)
 
