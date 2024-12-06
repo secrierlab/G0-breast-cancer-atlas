@@ -8,7 +8,7 @@ Scripts in [00_IntegratingDatasets](00_IntegratingDatasets) describe how to [dow
 
 #### Inferring copy number alterations
 
-We leveraged [`infercnv` package](https://github.com/broadinstitute/infercnv) to [infer](01_inferCNV/01_InferCopyNumberVariations.R) copy number variations in epithelial signle cells.
+We leveraged [`infercnv` package](https://github.com/broadinstitute/infercnv) to [infer](01_InferCNV/01_InferCopyNumberVariations.R) copy number variations in epithelial signle cells.
 
 #### G0 arrest scoring in malignant cells
 
