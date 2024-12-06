@@ -1,4 +1,4 @@
-# G0 breast cancer atlas
+# G0 Breast Cancer Atlas
 
 ### Author: Cenk Celik, UCL Genetics Institute
 This repository contains scripts for the evaluation of intrinsic and extrinsic regulation of G0 cell cycle arrest in breast cancer using single-cell and spatial transcriptomics data.
