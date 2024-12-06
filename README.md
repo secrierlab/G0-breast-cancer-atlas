@@ -1,6 +1,9 @@
 # G0 breast cancer atlas
 
 ### Author: Cenk Celik, UCL Genetics Institute
+This repository contains scripts for the evaluation of intrinsic and extrinsic regulation of G0 cell cycle arrest in breast cancer using single-cell and spatial transcriptomics data.
+
+![Graphical abstract](img/graphical_abstract.jpg)
 
 #### Integrating public data
 
@@ -12,3 +15,6 @@ We leveraged [`infercnv` package](https://github.com/broadinstitute/infercnv) to
 
 #### G0 arrest scoring in malignant cells
 
+First, apply G0 arrest scoring using the gene sets [downregulated_common.RData](02_G0arrestInMalignantCells/data/downregulated_common.RData) and [upregulated_common.RData](02_G0arrestInMalignantCells/data/upregulated_common.RData).
+> **Note:** if the data has ENSEMBL ID rather than HGNC symbols, visit the original study by [Wiecek *et al.* 2023](https://github.com/secrierlab/CancerG0Arrest) for the appropriate gene sets.
+To evaluate pathway enrichment in malignant cells based on their cell cycle status, use [02_EnrichmentAnalysis](02_G0arrestInMalignantCells/02_EnrichmentAnalysis.R). One could use [03_DifferentialAbundanceTesting](02_G0arrestInMalignantCells/03_DifferentialAbundanceTesting.R), [04_DifferentialExpression](02_G0arrestInMalignantCells/04_DifferentialExpression.R) to compute differential abundance and gene expresssion per cell cycle state, and [05_GeneExpression](02_G0arrestInMalignantCells/05_GeneExpression.R) to plot genes of interest.
