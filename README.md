@@ -32,6 +32,10 @@ ii. [Ligand-receptor interactions](03_CellCellInteractions/02_CellPhoneDBanalysi
 
 We utilised [`ProjecTILs` package](https://github.com/carmonalab/ProjecTILs) along with an extensive [human CD8 T cell atlas](https://doi.org/10.6084/m9.figshare.23608308) to [identify T cell states](04_InvestigatingCD8TcellExhaustion/01_CD8TcellExhaustion.R[) and infer their interactions with the TME, in particular, G0 arrested and fast-cycling cells, using [NicheNet](04_InvestigatingCD8TcellExhaustion/02_CellCellInteractionsInCD8Tcells.R) and [CellPhoneDB](04_InvestigatingCD8TcellExhaustion/03_TexCellPhoneDB.py).
 
+## Gene Regulatory Networks
+
+We used python implementation of [SCENIC](https://pyscenic.readthedocs.io/en/latest/) to investigate gene regulatory networks in [G0 arrest](05_GeneRegulatoryNetworks/01_G0_arrested_gene_regulatory_networks.py), [fast-cycling](05_GeneRegulatoryNetworks/02_Fast_cycling_gene_regulatory_networks.py) and [slow-cycling](05_GeneRegulatoryNetworks/03_Slow_cycling_gene_regulatory_networks.py) cells. Make sure you have your dataset in AnnData format. See [00_data_preparation.py](05_GeneRegulatoryNetworks/00_data_preparation.py). For the module enrichment in fast-cycling cells use [04_module_enrichment.R](05_GeneRegulatoryNetworks/04_module_enrichment.R). For detailed interrogation of the [proteostasis network](05_GeneRegulatoryNetworks/05_robust_rank_analysis_gsea.R) and [senescence/dormancy](05_GeneRegulatoryNetworks/06_senescence_dormancy_density), we employed [Robust rank Analysis](https://github.com/chuiqin/irGSEA).
+
 
 
 
