@@ -36,6 +36,8 @@ violin_plot_with_stats(gene = "TOP2A", test_sign = comparisons)
 ## genes to plot (Extended Data Figure 2e):
 violin_plot_with_stats(gene = "GLB1", test_sign = comparisons)
 ## genes to plot (Extended Data Figure 2f):
-violin_plot_with_stats(gene = "MALAT1", test_sign = comparisons)
+pdf("figures/MALAT1_ridge.pdf")
+RidgePlot(integrated, "MALAT1", cols = c("Fast-cycling" = "#1B7837", "G0 arrested" = "#762A83", "Slow-cycling" = "#f7f7f7"))
+dev.off()
 
 setwd(project_dir)
