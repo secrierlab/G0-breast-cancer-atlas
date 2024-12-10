@@ -33,7 +33,9 @@ comparisons <- list(c("G0 arrested", "Fast-cycling"), c("G0 arrested", "Slow-cyc
 ## genes to plot (Figure 2d):
 violin_plot_with_stats(gene = "MKI67", test_sign = comparisons)
 violin_plot_with_stats(gene = "TOP2A", test_sign = comparisons)
+## genes to plot (Extended Data Figure 2e):
+violin_plot_with_stats(gene = "GLB1", test_sign = comparisons)
+## genes to plot (Extended Data Figure 2f):
 violin_plot_with_stats(gene = "MALAT1", test_sign = comparisons)
-violin_plot_with_stats(gene = "ATF3", test_sign = comparisons)
 
 setwd(project_dir)
