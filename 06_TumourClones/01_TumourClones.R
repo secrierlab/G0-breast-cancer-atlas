@@ -45,7 +45,7 @@ results <- SCEVAN::pipelineCNA(
   par_cores = 4,
   SUBCLONES = TRUE,
   plotTree = TRUE
-)
+) # this function generated all panels of Figure 3 and Extended Data Figure 3
 
 setwd("..")
 
