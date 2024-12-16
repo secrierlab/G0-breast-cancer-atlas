@@ -1,3 +1,3 @@
 [submodule "0X_SingleCellLargeLanguageModel/G0-LM"]
-	path = 0X_SingleCellLargeLanguageModel/G0-LM
+	path = 08_SingleCellLargeLanguageModel/G0-LM
 	url = https://github.com/secrierlab/G0-LM.git
