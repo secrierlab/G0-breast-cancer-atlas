@@ -50,7 +50,11 @@ The [G0-LM model](https://github.com/secrierlab/G0-LM), adapted from scBERT, int
 
 ## Drug-niche interactions
 
-Finally, we employed [`drug2cell`](https://drug2cell.readthedocs.io) on Visium slides to find candidate molecules for [niches of interest](09_DrugNicheInteractions/01_DrugNichePredictions.py). Then, we computed distances between [the niches and candidate molecules](09_DrugNicheInteractions/02_DrugNicheSpottedPyAnalysis.py).
+We employed [`drug2cell`](https://drug2cell.readthedocs.io) on Visium slides to find candidate molecules for [niches of interest](09_DrugNicheInteractions/01_DrugNichePredictions.py). Then, we computed distances between [the niches and candidate molecules](09_DrugNicheInteractions/02_DrugNicheSpottedPyAnalysis.py).
+
+## Survival (KM) analysis
+
+Finally, we also tested survival in [METABRIC](https://www.cbioportal.org/study/summary?id=brca_metabric) breast cancer cohort for the ER+ and TNBC subtypes using our [G0 arrest scoring](https://github.com/secrierlab/CancerG0Arrest) in [bulk tumours](10_SurvivalAnalysis/01_METABRIC_survival_test_adjusted_curves.R).
 
 # How to cite
 
