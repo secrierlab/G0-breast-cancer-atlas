@@ -42,7 +42,7 @@ Using [`SCEVAN`](https://github.com/AntonioDeFalco/SCEVAN), we calculated [tumou
 
 ## Spatial analyses
 
-Using 12 [Visium breast cancer slides](https://zenodo.org/records/10371890), we computed distances between niches using [`SpottedPy`](https://github.com/secrierlab/SpottedPy/tree/main) and estimated [L_R interactions](07_SpatialAnalysis/04_SpatialCellPhoneDB.py) using [`LIANA+`](https://liana-py.readthedocs.io/en/latest/) [`cellphonedb`](https://cellphonedb.readthedocs.io/en/latest/) implementation. Also, we calculated distances between G0 and fast cycling states for [signatures](07_SpatialAnalysis/02_SpottedPySignatures.py and 07_SpatialAnalysis/03_SpottedPyUPRSignatures.py). Entire workflow can be found [here](07_SpatialAnalysis/).
+Using 12 [Visium breast cancer slides](https://zenodo.org/records/10371890), we computed distances between niches using [`SpottedPy`](https://github.com/secrierlab/SpottedPy/tree/main) and estimated [L_R interactions](07_SpatialAnalysis/04_SpatialCellPhoneDB.py) using [`LIANA+`](https://liana-py.readthedocs.io/en/latest/)'s [`cellphonedb`](https://cellphonedb.readthedocs.io/en/latest/) implementation. Also, we calculated distances between G0 and fast cycling states for [signatures](07_SpatialAnalysis/02_SpottedPySignatures.py and 07_SpatialAnalysis/03_SpottedPyUPRSignatures.py). Entire workflow can be found [here](07_SpatialAnalysis/).
 
 ## Single cell large language model
 
