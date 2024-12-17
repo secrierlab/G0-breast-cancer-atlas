@@ -44,7 +44,7 @@ Using [`SCEVAN`](https://github.com/AntonioDeFalco/SCEVAN), we calculated [tumou
 
 Using 12 [Visium breast cancer slides](https://zenodo.org/records/10371890), we computed distances between niches using [`SpottedPy`](https://github.com/secrierlab/SpottedPy/tree/main) and estimated [L_R interactions](07_SpatialAnalysis/04_SpatialCellPhoneDB.py) using [`LIANA+`](https://liana-py.readthedocs.io/en/latest/)'s [`cellphonedb`](https://cellphonedb.readthedocs.io/en/latest/) implementation. Also, we calculated distances between G0 and fast cycling states for [signatures](07_SpatialAnalysis/02_SpottedPySignatures.py and 07_SpatialAnalysis/03_SpottedPyUPRSignatures.py). Entire workflow can be found [here](07_SpatialAnalysis/).
 
-## Single cell large language model
+## Single-cell large language model
 
 The [G0-LM model](https://github.com/secrierlab/G0-LM), adapted from scBERT, integrates advanced fine-tuning techniques like LoRA to address G0 arrest in single-cell analysis, leveraging attention-enhanced embeddings and a fusion network for precise cell state classification. By amplifying signals from key genes and filtering irrelevant features, it delivers accurate predictions while minimizing overfitting.
 
