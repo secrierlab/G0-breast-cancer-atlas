@@ -58,7 +58,7 @@ Finally, we also tested survival in [METABRIC](https://www.cbioportal.org/study/
 
 # How to cite
 
-Celik, C., Withnell, E., Chu, T., Pan, S., Labbadia, J., & Secrier, M. (2024). Balancing tumour proliferation and sustained cell cycle arrest through proteostasis remodelling drives immune niche compartmentalisation in breast cancer. [Preprint].
+Celik, C., Withnell, E., Chu, T., Pan, S., Labbadia, J., & Secrier, M. (2024). Balancing tumour proliferation and sustained cell cycle arrest through proteostasis remodelling drives immune niche compartmentalisation in breast cancer. [Preprint](https://doi.org/10.1101/2025.01.08.632014).
 
 # Copyright
 This code is free and is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY. See the GNU General Public License for more details.
