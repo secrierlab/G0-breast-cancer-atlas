@@ -15,34 +15,29 @@ We leveraged [`infercnv` package](https://github.com/broadinstitute/infercnv) to
 
 ## G0 arrest scoring in malignant cells
 
-First, apply combined G0 arrest scoring method using the gene sets [downregulated_common.RData](02_G0arrestInMalignantCells/data/downregulated_common.RData) and [upregulated_common.RData](02_G0arrestInMalignantCells/data/upregulated_common.RData).
-> **Note:** if the data has ENSEMBL ID rather than HGNC symbols, visit the original study by [Wiecek *et al.* 2023](https://github.com/secrierlab/CancerG0Arrest) for the appropriate gene sets.
-
-To evaluate pathway enrichment in malignant cells based on their cell cycle status, use [02_EnrichmentAnalysis](02_G0arrestInMalignantCells/02_EnrichmentAnalysis.R). One could use [03_DifferentialAbundanceTesting](02_G0arrestInMalignantCells/03_DifferentialAbundanceTesting.R), [04_DifferentialExpression](02_G0arrestInMalignantCells/04_DifferentialExpression.R) to compute differential abundance and gene expresssion per cell cycle state, and [05_GeneExpression](02_G0arrestInMalignantCells/05_GeneExpression.R) to plot genes of interest.
+First, apply combined scoring using tumour-specific [G0 arrest signature](data/G0_signature.xlsx) we [derived](revisions/11_oren_non_cycling.ipynb) from the dataset of [Oren et al (2021) Nature](https://www.nature.com/articles/s41586-021-03796-6). Determine the cut-offs for G0 and cycling phenotypes using [EdU proxy scoring](revisions/01_01_G0_cut_offs.ipynb). We further validated the cell cycle categories with [ccAF_v2](revisions/01_02_validation_external_tool.ipynb) of [Plaisier lab](https://github.com/plaisier-lab/ccAFv2_py). The pathway enrichment analyses for cell cycle states can be found [here](revisions/05_gene_ontology.ipynb). The DEGs for G0, cycling and intermediate is computed using [`scanpy`'s `rank_gene_groups()` function](revisions/25_cycling_states_degs.ipynb). Hallmark pathway analysis, data qc, cell type percentages and subtype and patient-specific G0 proportions can be found [here](revisions/17_cancer_hallmarks.ipynb) and [here](revisions/13_cycling_states_per_patient.ipynb), respectively. Validation of tumour-specific G0 score in cell lines can be found [here](revisions/07_cellline_cutoffs.ipynb). Further supplementary analyses [here](revisions/01_03_G0_score_vs_non_cycling.ipynb).
 
 ## Cell-cell interactions
 
 Cell-cell interaction analysis was conducted at two levels:
 
-i. [Ligand-target cell gene expression](03_CellCellInteractions/01_NicheNetAnalysis.R): Using [`NicheNet` v2.0](https://github.com/saeyslab/nichenetr/tree/master), infer prioritised ligands from the tumour microenvironment (TME).
+i. [Ligand-target cell gene expression](revisions/08_01_nichenet_analysis_discovery_invasive.r): Using [`NicheNet` v2.0](https://github.com/saeyslab/nichenetr/tree/master), infer prioritised ligands from the tumour microenvironment (TME). Refer [here](revisions/08_04_ligand_expression.ipynb) for ligand expression for G0 arrest and cycling cells along with celltype specific gene expression dot plot.
 
-ii. [Ligand-receptor interactions](03_CellCellInteractions/02_CellPhoneDBanalysis.py): Using [`CellPhoneDB` v5 (method 3)](https://cellphonedb.readthedocs.io/en/latest/), evaluate specific ligand-receptor pairs between the TME and cell type of interest.
+ii. [Ligand-receptor interactions](revisions/09_liana_analysis.ipynb): Using [`CellPhoneDB` v5 (method 3)](https://cellphonedb.readthedocs.io/en/latest/), evaluate specific ligand-receptor pairs between the TME and cell type of interest along with [a global LR map](revisions/10_cellphonedb_analysis.ipynb).
 
-## Exhausted T cells
-
-We utilised [`ProjecTILs` package](https://github.com/carmonalab/ProjecTILs) along with an extensive [human CD8 T cell atlas](https://doi.org/10.6084/m9.figshare.23608308) to [identify T cell states](04_InvestigatingCD8TcellExhaustion/01_CD8TcellExhaustion.R[) and infer their interactions with the TME, in particular, G0 arrested and fast-cycling cells, using [NicheNet](04_InvestigatingCD8TcellExhaustion/02_CellCellInteractionsInCD8Tcells.R) and [CellPhoneDB](04_InvestigatingCD8TcellExhaustion/03_TexCellPhoneDB.py).
+[Spatial LR analyses](revisions/16_04_spatial_liana_analysis.ipynb) were conducted in a similary way. LR pairs were [scored and visualised](revisions/19_enrichmap.ipynb) using our [EnrichMap](https://github.com/secrierlab/enrichmap) tool.
 
 ## Gene regulatory networks
 
-We used python implementation of [`SCENIC`](https://pyscenic.readthedocs.io/en/latest/) to investigate gene regulatory networks in [G0 arrest](05_GeneRegulatoryNetworks/01_G0_arrested_gene_regulatory_networks.py), [fast-cycling](05_GeneRegulatoryNetworks/02_Fast_cycling_gene_regulatory_networks.py) and [slow-cycling](05_GeneRegulatoryNetworks/03_Slow_cycling_gene_regulatory_networks.py) cells. Make sure you have your dataset in AnnData format. See [00_data_preparation.py](05_GeneRegulatoryNetworks/00_data_preparation.py). For the module enrichment in fast-cycling cells use [04_module_enrichment.R](05_GeneRegulatoryNetworks/04_module_enrichment.R). For detailed interrogation of the [proteostasis network](05_GeneRegulatoryNetworks/05_robust_rank_analysis_gsea.R) and [senescence/dormancy](05_GeneRegulatoryNetworks/06_senescence_dormancy_density.R), we employed [Robust rank Analysis](https://github.com/chuiqin/irGSEA).
+We used python implementation of [`SCENIC`](https://pyscenic.readthedocs.io/en/latest/) to investigate gene regulatory networks in [G0 arrest, cycling and intermediate](revisions/02_gene_regulatory_network_analysis.ipynb) cells along with [hotspot](revisions/14_hotspot_modules.ipynb) analysis for gene expression modules. For detailed interrogation of the [proteostasis network](05_GeneRegulatoryNetworks/05_robust_rank_analysis_gsea.R) and [senescence/dormancy](05_GeneRegulatoryNetworks/06_senescence_dormancy_density.R), we employed [Robust rank Analysis](https://github.com/chuiqin/irGSEA). [Pathway enrichment](revisions/18_reactoma_pa.ipynb) was also conducted using Reactome and GO databases.
 
 ## Tumour subclones
 
-Using [`SCEVAN`](https://github.com/AntonioDeFalco/SCEVAN), we calculated [tumour subclones](06_TumourClones/01_TumourClones.R) for cells of interest.
+We computed [cell cycle related CNAs burden and intratumour heterogeneity](revisions/06_01_evolution_of_subclones.ipynb) using infercnv results.
 
 ## Spatial analyses
 
-Using 12 [Visium breast cancer slides](https://zenodo.org/records/10371890), we computed distances between niches using [`SpottedPy`](https://github.com/secrierlab/SpottedPy/tree/main) and estimated [L_R interactions](07_SpatialAnalysis/04_SpatialCellPhoneDB.py) using [`LIANA+`](https://liana-py.readthedocs.io/en/latest/)'s [`cellphonedb`](https://cellphonedb.readthedocs.io/en/latest/) implementation. Also, we calculated distances between G0 and fast cycling states for [signatures](07_SpatialAnalysis/02_SpottedPySignatures.py and 07_SpatialAnalysis/03_SpottedPyUPRSignatures.py). Entire workflow can be found [here](07_SpatialAnalysis/).
+Using 12 [Visium breast cancer slides](https://zenodo.org/records/10371890), we computed [distances](revisions/15_00_spottedpy.ipynb) between niches using [`SpottedPy`](https://github.com/secrierlab/SpottedPy), along with subtype specific analyses for [Luminal A](revisions/15_01_spottedpy_LumA.ipynb) and [Basal-like](revisions/15_03_spottedpy_Basal.ipynb) tumours.
 
 ## Single-cell large language model
 
@@ -50,11 +45,15 @@ The [G0-LM model](https://github.com/secrierlab/G0-LM), adapted from scBERT, int
 
 ## Drug-niche interactions
 
-We employed [`drug2cell`](https://drug2cell.readthedocs.io) on Visium slides to find candidate molecules for [niches of interest](09_DrugNicheInteractions/01_DrugNichePredictions.py). Then, we computed distances between [the niches and candidate molecules](09_DrugNicheInteractions/02_DrugNicheSpottedPyAnalysis.py).
+We employed [`drug2cell`](https://drug2cell.readthedocs.io) on Visium slides to find candidate molecules for [niches of interest](revisions/24_02_spatial_drug_to_cell_predictions.ipynb). Then, we computed distances between [the niches and candidate molecules](revisions/24_03_spatial_drug_to_cell_predictions_spottedpy.ipynb).
 
 ## Survival (KM) analysis
 
 Finally, we also tested survival in [METABRIC](https://www.cbioportal.org/study/summary?id=brca_metabric) breast cancer cohort for the ER+ and TNBC subtypes using our [G0 arrest scoring](https://github.com/secrierlab/CancerG0Arrest) method in [bulk tumours](10_SurvivalAnalysis/01_METABRIC_survival_test_adjusted_curves.R).
+
+## Validation and complementary analyses
+- Prediction of [Ki67 expression](revisions/04_predict_ki67_expression.ipynb) from H&E images
+- [Validation of spatial](revisions/23_01_xenium_distances.ipynb) findings in Xenium data with [LR analysis](revisions/23_02_xenium_liana.ipynb)
 
 # How to cite
 
